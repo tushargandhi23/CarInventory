@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarInventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_cars">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="brand" Type="varchar" MaxLength="20" />
+    <Property Name="model" Type="varchar" MaxLength="20" />
+    <Property Name="year" Type="int" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="is_new" Type="bit" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="10" />
+    <Property Name="password" Type="varchar" MaxLength="6" />
+    <Property Name="created_date" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_tbl_cars_tbl_users">
+    <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+    <End Role="tbl_cars" Type="Self.tbl_cars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_cars">
+        <PropertyRef Name="created_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarInventoryModelStoreContainer">
+    <EntitySet Name="tbl_cars" EntityType="Self.tbl_cars" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_users" EntityType="Self.tbl_users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbl_cars_tbl_users" Association="Self.FK_tbl_cars_tbl_users">
+      <End Role="tbl_users" EntitySet="tbl_users" />
+      <End Role="tbl_cars" EntitySet="tbl_cars" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
