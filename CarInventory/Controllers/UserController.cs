@@ -22,7 +22,6 @@ namespace CarInventory.Controllers
             this.uow = uow_;
         }
 
-        // GET: User
         public ActionResult Index()
         {
             return View();

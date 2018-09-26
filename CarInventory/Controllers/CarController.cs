@@ -26,11 +26,10 @@ namespace CarInventory.Controllers
         {
             try
             {
-
-            var userCarVM = new UserCarViewModel();
-            userCarVM.Cars = uow.CarRepository.GetAll().Where(m => m.CreatedBy.Equals(userId)).ToList();
-            userCarVM.User.Id = userId;
-            return View(userCarVM);
+                var userCarVM = new UserCarViewModel();
+                userCarVM.Cars = uow.CarRepository.GetAll().Where(m => m.CreatedBy.Equals(userId)).ToList();
+                userCarVM.User.Id = userId;
+                return View(userCarVM);
             }
             catch (Exception ex)
             {

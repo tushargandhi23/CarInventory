@@ -55,6 +55,10 @@ namespace CarInventory.Repositories
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Function to get all users
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<UserModel> GetAll()
         {
             return Mapper.Map<IList<UserModel>>(entities.tbl_users.ToList());

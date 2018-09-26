@@ -17,6 +17,10 @@ namespace CarInventory.Repositories
             this.entities = entities;
         }
 
+        /// <summary>
+        /// Function to add car
+        /// </summary>
+        /// <param name="model"></param>
         public void Add(CarModel model)
         {
             var entity = Mapper.Map<tbl_cars>(model);
@@ -24,6 +28,11 @@ namespace CarInventory.Repositories
 
         }
 
+        /// <summary>
+        /// Function to edit car
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public CarModel Edit(CarModel model)
         {
             var entity = Mapper.Map<tbl_cars>(model);
@@ -31,11 +40,20 @@ namespace CarInventory.Repositories
             return model;
         }
 
+        /// <summary>
+        /// Function to get car by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public CarModel Get(int id)
         {
            return GetAll().Where(m => m.Id.Equals(id)).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Function to get all cars
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<CarModel> GetAll()
         {
             return Mapper.Map<IList<CarModel>>(entities.tbl_cars.ToList());

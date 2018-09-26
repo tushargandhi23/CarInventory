@@ -7,6 +7,9 @@ namespace CarInventory.Models
 {
     public class CarModel
     {
+        /*
+         TODO:Data Annotation Validation can be implemented
+             */
         public int Id { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }

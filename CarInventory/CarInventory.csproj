@@ -176,7 +176,6 @@
       <DependentUpon>CarInventory.edmx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CarController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -189,7 +188,6 @@
     <Compile Include="Repositories\CarRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="tbl_cars.cs">
       <DependentUpon>CarInventory.tt</DependentUpon>

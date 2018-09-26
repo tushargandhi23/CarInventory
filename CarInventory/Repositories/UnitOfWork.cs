@@ -14,7 +14,7 @@ namespace CarInventory.Repositories
             entities = new CarInventoryEntities();
         }
 
-        // Add all the repository handles here
+        //TODO: Can be improve by creating Generic UnitOfWork
         IRepository<UserModel> userRepository = null;
         IRepository<CarModel> carRepository = null;
 
