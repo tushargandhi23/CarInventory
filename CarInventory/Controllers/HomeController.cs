@@ -10,18 +10,6 @@ namespace CarInventory.Controllers
 {
     public class HomeController : Controller
     {
-        private UnitOfWork uow = null;
-
-        public HomeController()
-        {
-            uow = new UnitOfWork();
-        }
-
-        public HomeController(UnitOfWork uow_)
-        {
-            this.uow = uow_;
-        }
-
         public ActionResult Index()
         {
             return View(new UserModel());
@@ -30,11 +18,6 @@ namespace CarInventory.Controllers
         [HttpPost]
         public ActionResult Index(UserModel model)
         {
-            model.UserName = "ts";
-            model.Password = "test123";
-            model.CreatedOn = DateTime.Now;
-            uow.UserRepository.Add(model);
-            uow.SaveChanges();
             return View();
         }
 
@@ -46,11 +29,6 @@ namespace CarInventory.Controllers
         [HttpPost]
         public ActionResult Login(UserModel model)
         {
-            if (ModelState.IsValid)
-            {
-                ModelState.AddModelError("", "EmailId or Password Incorrect.");
-
-            }
             return View(model);
         }
 

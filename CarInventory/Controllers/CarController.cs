@@ -21,12 +21,22 @@ namespace CarInventory.Controllers
         {
             this.uow = uow_;
         }
+
         public ActionResult Index(int userId)
         {
+            try
+            {
+
             var userCarVM = new UserCarViewModel();
             userCarVM.Cars = uow.CarRepository.GetAll().Where(m => m.CreatedBy.Equals(userId)).ToList();
             userCarVM.User.Id = userId;
             return View(userCarVM);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Car/Index", ex);
+                return RedirectToAction("Index", "Car", new { @userId = userId });
+            }
         }
 
         public ActionResult Add()
@@ -38,19 +48,27 @@ namespace CarInventory.Controllers
         [HttpPost]
         public ActionResult Save(UserCarViewModel model)
         {
-
             model.Car.CreatedOn = DateTime.Now;
             model.Car.CreatedBy = model.User.Id;
-            if (ModelState.IsValid)
+            try
             {
-                uow.CarRepository.Add(model.Car);
-                uow.SaveChanges();
-                model.Car = new CarModel();
-                return RedirectToAction("Index", "Car", new { @userId = model.User.Id });
+                if (ModelState.IsValid)
+                {
+                    uow.CarRepository.Add(model.Car);
+                    uow.SaveChanges();
+                    model.Car = new CarModel();
+                    return RedirectToAction("Index", "Car", new { @userId = model.User.Id });
+                }
+                else
+                {
+                    return PartialView("_Add", new { @userId = model.Car.CreatedBy });
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                return PartialView("_Add", new { @userId = model.Car.CreatedBy });
+                Logger.Error("Car/Save", ex);
+                return RedirectToAction("Index", "Car", new { @userId = model.User.Id });
             }
         }
     }

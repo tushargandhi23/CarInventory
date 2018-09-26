@@ -18,6 +18,7 @@ namespace CarInventory
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutoMapperConfiguration.Configure();
+            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }

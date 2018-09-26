@@ -36,24 +36,26 @@ namespace CarInventory.Controllers
         [HttpPost]
         public ActionResult Login(UserModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var users = uow.UserRepository.GetAll().ToList().
-                            Where(m => m.UserName.Equals(model.UserName)
-                            && m.Password.Equals(model.Password));
-
-                if (users.Count() == 1)
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Index", "Car", new { @userId = users.FirstOrDefault().Id });
-                }
-            }
-            return View(model);
-        }
+                    var users = uow.UserRepository.GetAll().ToList().
+                                Where(m => m.UserName.Equals(model.UserName)
+                                && m.Password.Equals(model.Password));
 
-        // GET: User/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+                    if (users.Count() == 1)
+                    {
+                        return RedirectToAction("Index", "Car", new { @userId = users.FirstOrDefault().Id });
+                    }
+                }
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("User/Login", ex);
+                return View(model);
+            }
         }
 
         // GET: User/Create
@@ -91,8 +93,10 @@ namespace CarInventory.Controllers
                 }
                 return View(model);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+
+                Logger.Error("User/Create", ex);
                 return View(model);
             }
         }

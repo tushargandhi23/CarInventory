@@ -98,3 +98,5 @@ C:\Tushar\USA\Ventive\CarInventory\CarInventory\bin\System.ValueTuple.dll
 C:\Tushar\USA\Ventive\CarInventory\CarInventory\bin\AutoMapper.pdb
 C:\Tushar\USA\Ventive\CarInventory\CarInventory\bin\AutoMapper.xml
 C:\Tushar\USA\Ventive\CarInventory\CarInventory\bin\System.ValueTuple.xml
+C:\Tushar\USA\Ventive\CarInventory\CarInventory\bin\log4net.dll
+C:\Tushar\USA\Ventive\CarInventory\CarInventory\bin\log4net.xml
