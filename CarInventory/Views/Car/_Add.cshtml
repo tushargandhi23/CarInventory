@@ -1,0 +1,66 @@
+﻿@model CarInventory.Models.UserCarViewModel
+
+@using (Html.BeginForm("Save", "Car", FormMethod.Post))
+{
+
+
+    <div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Add New Car</h4>
+                    </div>
+                    <div class="modal-body" id="frmCar">
+                        <div>
+                            @if (ViewBag.Message != null)
+                            {
+                                <span class="text-success">@ViewBag.Message</span>
+                            }
+
+                            <div class="modal-body form-group">
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label>Brand:</label>
+                                        @Html.EditorFor(model => model.Car.Brand, new { htmlAttributes = new { @class = "form-control", @id = "brand" } })
+                                        @Html.HiddenFor(model => model.User.Id)
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <label>Model:</label>
+                                        @Html.EditorFor(model => model.Car.Model, new { htmlAttributes = new { @id = "Model", @class = "form-control" } })
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label>Year:</label>
+                                        @Html.EditorFor(model => model.Car.Year, new { htmlAttributes = new { @class = "form-control", @id = "year" } })
+
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <label>Price:</label>
+                                        @Html.EditorFor(model => model.Car.Price, new { htmlAttributes = new { @id = "price", @class = "form-control" } })
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <label>Is New:</label>
+                                        @Html.EditorFor(model => model.Car.isNew, new { htmlAttributes = new { @class = "form-control", @id = "isNew" } })
+                                        @Html.HiddenFor(m => m.Car.Id)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

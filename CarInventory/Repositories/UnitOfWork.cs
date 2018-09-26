@@ -16,6 +16,7 @@ namespace CarInventory.Repositories
 
         // Add all the repository handles here
         IRepository<UserModel> userRepository = null;
+        IRepository<CarModel> carRepository = null;
 
         // Add all the repository getters here
         public IRepository<UserModel> UserRepository
@@ -27,6 +28,17 @@ namespace CarInventory.Repositories
                     userRepository = new UserRepository(entities);
                 }
                 return userRepository;
+            }
+        }
+        public IRepository<CarModel> CarRepository
+        {
+            get
+            {
+                if (carRepository == null)
+                {
+                    carRepository = new CarRepository(entities);
+                }
+                return carRepository;
             }
         }
 

@@ -57,7 +57,7 @@ namespace CarInventory.Repositories
 
         public IEnumerable<UserModel> GetAll()
         {
-            throw new NotImplementedException();
+            return Mapper.Map<IList<UserModel>>(entities.tbl_users.ToList());
         }
 
         internal void SaveChanges()

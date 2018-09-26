@@ -3,9 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title> My ASP.NET Application</title>
     <link rel="stylesheet" href="~/bootstrap/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <style>
+
         body {
             padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
         }
@@ -22,10 +26,12 @@
                 </button>
                 <a class="brand" href="#">Car Inventory System</a>
                 <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                    <ul class="nav" style="float:right !important">
+                        @*<li><a href=@Html.Action("Login","User")>Home </a></li>*@
+                        <li>@Html.ActionLink("Home", "Login", "User", null, null) </li>
+                        <li>@Html.ActionLink("Login", "Login", "User", null, null)</li>
+                        <li>@Html.ActionLink("Register", "Create", "User", null, null)</li>
+
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -41,11 +47,16 @@
         </footer>
     </div>
 
-
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="~/bootstrap/js/bootstrap.js"></script>
-    @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)*@
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        $("#closebtn").click(function () {
+            $('#myModal').modal('hide');
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,56 @@
+﻿@using CarInventory.Models;
+@model UserCarViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    function addNew() {
+        $.ajax({
+            url: '/Car/Add/', // The method name + paramater
+            success: function (data) {
+                $('#frmCar').html(data);
+
+            }
+        });
+    }
+
+</script>
+<div><h4>My Cars</h4></div>
+<div class="text-right">
+    <button id='newCar' class="btn btn-primary btn-lg" onclick="" data-toggle="modal" data-target="#myModal">Add New Car</button>
+    <br />
+</div>
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Id </th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Price</th>
+        <th>Is New</th>
+        <th>Edit</th>
+
+    </tr>
+    @foreach (var d in Model.Cars)
+    {
+        <tr>
+            <td>@d.Id</td>
+            <td>@d.Brand</td>
+            <td>@d.Model</td>
+            <td>@d.Year</td>
+            <td>@d.Price</td>
+            <td>@d.isNew</td>
+            <td>@Html.ActionLink("Edit", "Edit")</td>
+
+        </tr>
+    }
+</table>
+
+<!-- Modal -->
+<div>
+    @Html.Partial("_Add", Model)
+    @*@{Html.RenderPartial("_Add", Model);}*@
+
+</div>
